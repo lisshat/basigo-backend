@@ -1,21 +1,12 @@
-from flask import Flask, request, jsonify
-from firebase_admin import auth, credentials, initialize_app, exceptions
-from pymongo import MongoClient
 from datetime import datetime
-from app.instance.config import Config
-from flask import Blueprint
+from firebase_admin import auth, exceptions
+from flask import Blueprint, request, jsonify
+from pymongo import MongoClient
 
-
-app = Flask(__name__)
-
-# MongoDB setup
-client = MongoClient("mongodb+srv://mlinami:fLPbruwOJD2tvR0h@basigo.fkhuf.mongodb.net/?retryWrites=true&w=majority&appName=BasiGo")
-db = client.basigoData
-users_collection = db.users
-
+# Define the blueprint for signing up users
 sign_up_user_route = Blueprint('sign_up_user', __name__)
 
-@app.route('/signup', methods=['POST'])
+@sign_up_user_route.route('/signup', methods=['POST'])
 def sign_up_user():
     try:
         # Parse request data
@@ -35,6 +26,11 @@ def sign_up_user():
         )
 
         uid = firebase_user.uid
+
+        # Access MongoDB through Flask's app context
+        mongo_client = request.app.mongo_client
+        db = mongo_client.basigoData
+        users_collection = db.users
 
         # Store user details in MongoDB
         user_data = {
@@ -61,6 +57,3 @@ def sign_up_user():
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": "An error occurred"}), 500
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5006)

@@ -37,9 +37,9 @@ def create_app():
     from .user_data.sign_up_user_data import sign_up_user_route
     from .apis.dynamic_seat_booking.seat_layout import seat_layout_route
 
-    app.register_blueprint(fetch_trips_route, url_prefix='/fetch_trips')
-    app.register_blueprint(sign_in_user_route, url_prefix='/user/sign_in_user')
-    app.register_blueprint(sign_up_user_route, url_prefix='/user/sign_up_user')
+    app.register_blueprint(fetch_trips_route, url_prefix='/api')
+    app.register_blueprint(sign_in_user_route, url_prefix='/user/sign_in')
+    app.register_blueprint(sign_up_user_route, url_prefix='/user')
     app.register_blueprint(seat_layout_route, url_prefix='/seat_layout')
 
     # Make MongoDB client accessible via app context

@@ -1,25 +1,12 @@
 from datetime import datetime
-
 from firebase_admin import auth
-from flask import Blueprint
-from flask import Flask, request, jsonify
+from flask import Blueprint, request, jsonify
 from pymongo import MongoClient
 
-app = Flask(__name__)
-
-# Initialize Firebase Admin SDK
-
-
-# MongoDB setup
-client = MongoClient(
-    "mongodb+srv://mlinami:fLPbruwOJD2tvR0h@basigo.fkhuf.mongodb.net/?retryWrites=true&w=majority&appName=BasiGo")
-db = client.basigoData
-users_collection = db.users
-
+# Define the blueprint for signing in users
 sign_in_user_route = Blueprint('sign_in_user', __name__)
 
-
-@app.route('/signin', methods=['POST'])
+@sign_in_user_route.route('/signin', methods=['POST'])
 def sign_in_user():
     token = request.json.get("token")
     if not token:
@@ -30,32 +17,36 @@ def sign_in_user():
         decoded_token = auth.verify_id_token(token)
         uid = decoded_token['uid']
 
-        # Get the user's email and other details
+        # Get the user's email and other details from Firebase
         firebase_user = auth.get_user(uid)
         email = firebase_user.email
         phone_number = firebase_user.phone_number
 
+        # Access MongoDB through Flask's app context
+        mongo_client = request.app.mongo_client
+        db = mongo_client.basigoData
+        users_collection = db.users
+
         # Check if user exists in MongoDB
-        user = users_collection.find_one({"uid": uid})
+        user = users_collection.find_one({"firebaseUid": uid})
 
         if not user:
             # New user: Create MongoDB record
             user_data = {
-                "firebaseUid": uid,  # Firebase UID
-                "email": email,  # User email
-                "phoneNumber": phone_number,  # Phone number for MPESA transactions
-                "createdAt": datetime.utcnow(),  # Timestamp for user creation
-                "lastSignIn": datetime.utcnow(),  # Timestamp for last sign-in
-                "tickets": [],  # List of tickets
-                "bookings": [],  # List of bookings (optional)
-                "status": "active"  # User status
+                "firebaseUid": uid,
+                "email": email,
+                "phoneNumber": phone_number,
+                "createdAt": datetime.utcnow(),
+                "lastSignIn": datetime.utcnow(),
+                "tickets": [],
+                "bookings": [],
+                "status": "active"
             }
-
             users_collection.insert_one(user_data)
         else:
             # Existing user: Update lastSignIn timestamp
             users_collection.update_one(
-                {"uid": uid},
+                {"firebaseUid": uid},
                 {"$set": {"lastSignIn": datetime.utcnow()}}
             )
 
@@ -68,7 +59,3 @@ def sign_in_user():
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": "An error occurred"}), 500
-
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5005)

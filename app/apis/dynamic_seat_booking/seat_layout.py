@@ -1,29 +1,33 @@
-# app/apis/dynamic_seat_booking/seat_layout.py
-from flask import Blueprint, jsonify
-from pymongo import MongoClient
+from flask import Blueprint, jsonify, current_app
 
-# MongoDB setup
-client = MongoClient("mongodb+srv://mlinami:fLPbruwOJD2tvR0h@basigo.fkhuf.mongodb.net/?retryWrites=true&w=majority&appName=BasiGo")
-db = client.basigoData
-bus_collection = db.bus
-
-# Define a single Blueprint to handle both routes
+# Define the blueprint for seat layout routes
 seat_layout_route = Blueprint('seat_layout', __name__)
 
 # API to get basic seat layout info (totalSeats only) for quick UI rendering
 @seat_layout_route.route('/bus/<busId>', methods=['GET'])
 def get_basic_seat_layout(busId):
-    bus = bus_collection.find_one({"_id": busId})  # Fetch bus seat layout by busId
+    # Access MongoDB through the Flask app context
+    mongo_client = current_app.mongo_client
+    db = mongo_client.basigoData
+    bus_collection = db.bus
+
+    # Fetch bus seat layout by busId
+    bus = bus_collection.find_one({"_id": busId})
     if bus and 'seats' in bus and 'total' in bus['seats']:
-        return jsonify({"totalSeats": bus['seats']['total']})  # Return the total seats from the seats map
+        return jsonify({"totalSeats": bus['seats']['total']})
     else:
         return jsonify({"error": "Bus or seat information not found"}), 404
 
 # API to get detailed seat layout info
 @seat_layout_route.route('/bus/detailed-layout/<busId>', methods=['GET'])
 def get_detailed_seat_layout(busId):
-    bus = bus_collection.find_one({"_id": busId})
+    # Access MongoDB through the Flask app context
+    mongo_client = current_app.mongo_client
+    db = mongo_client.basigoData
+    bus_collection = db.bus
+
     print("Received BusId:", busId)
+    bus = bus_collection.find_one({"_id": busId})
     if bus and 'seats' in bus:
         seats_data = bus['seats']
         print("Returning seat layout:", seats_data)
