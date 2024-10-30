@@ -16,10 +16,18 @@ def create_app():
     if firebase_creds_b64:
         # Decode the base64 string
         firebase_creds_json = base64.b64decode(firebase_creds_b64).decode('utf-8')
-        # Parse the JSON
+
+        # Parse the JSON string
         cred_dict = json.loads(firebase_creds_json)
-        cred = credentials.Certificate(cred_dict)
+
+        # Write to a temporary file
+        with open('/tmp/firebase_creds.json', 'w') as temp_cred_file:
+            json.dump(cred_dict, temp_cred_file)
+
+        # Initialize Firebase using the path to the temporary file
+        cred = credentials.Certificate('/tmp/firebase_creds.json')
         initialize_app(cred)
+
     else:
         raise ValueError("Firebase credentials not found in environment variables")
 
