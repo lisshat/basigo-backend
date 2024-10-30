@@ -1,6 +1,6 @@
 from flask import Flask
 from firebase_admin import credentials, initialize_app
-from .models import mongo_client
+from .models.models import mongo_client
 
 def create_app():
     app = Flask(__name__)
