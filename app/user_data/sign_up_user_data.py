@@ -8,10 +8,6 @@ from flask import Blueprint
 
 app = Flask(__name__)
 
-# Initialize Firebase Admin SDK
-cred = credentials.Certificate(Config.FIREBASE_CREDENTIALS_JSON)
-initialize_app(cred)
-
 # MongoDB setup
 client = MongoClient("mongodb+srv://mlinami:fLPbruwOJD2tvR0h@basigo.fkhuf.mongodb.net/?retryWrites=true&w=majority&appName=BasiGo")
 db = client.basigoData

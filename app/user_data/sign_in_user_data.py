@@ -1,19 +1,14 @@
-from flask import Flask, request, jsonify
-from firebase_admin import auth
-from pymongo import MongoClient
 from datetime import datetime
-from app.instance.config import Config
-from flask import Blueprint
 
+from firebase_admin import auth
+from flask import Blueprint
+from flask import Flask, request, jsonify
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
 # Initialize Firebase Admin SDK
-import firebase_admin
-from firebase_admin import credentials
 
-cred = credentials.Certificate(Config.FIREBASE_CREDENTIALS_JSON)
-firebase_admin.initialize_app(cred)
 
 # MongoDB setup
 client = MongoClient(
