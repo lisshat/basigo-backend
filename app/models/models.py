@@ -1,17 +1,11 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+# app/models.py
+import os
+from pymongo import MongoClient
 
-uri = "mongodb+srv://mlinami:fLPbruwOJD2tvR0h@basigo.fkhuf.mongodb.net/?retryWrites=true&w=majority&appName=BasiGo"
+# Get Mongo URI from environment variable
+mongo_uri = os.getenv("MONGO_URI")
+if not mongo_uri:
+    raise ValueError("MONGO_URI environment variable is not set")
 
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
-
-# Ping the MongoDB server to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. Successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
-
-# Export the client
-mongo_client = client
+# Initialize MongoDB client
+mongo_client = MongoClient(mongo_uri)
