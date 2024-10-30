@@ -1,5 +1,5 @@
 # app/apis/dynamic_seat_booking/seat_layout.py
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 from pymongo import MongoClient
 
 # MongoDB setup

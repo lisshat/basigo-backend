@@ -3,6 +3,8 @@ from firebase_admin import auth, credentials, initialize_app, exceptions
 from pymongo import MongoClient
 from datetime import datetime
 from app.instance.config import Config
+from flask import Blueprint
+
 
 app = Flask(__name__)
 
