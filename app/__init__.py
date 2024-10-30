@@ -24,10 +24,10 @@ def create_app():
         raise ValueError("Firebase credentials not found in environment variables")
 
     # Register Blueprints for APIs
-    from apis.fetch_trips import fetch_trips_route
-    from user_data.sign_in_user_data import sign_in_user_route
-    from user_data.sign_up_user_data import sign_up_user_route
-    from apis.dynamic_seat_booking.seat_layout import seat_layout_route
+    from .apis.fetch_trips import fetch_trips_route
+    from .user_data.sign_in_user_data import sign_in_user_route
+    from .user_data.sign_up_user_data import sign_up_user_route
+    from .apis.dynamic_seat_booking.seat_layout import seat_layout_route
 
     app.register_blueprint(fetch_trips_route, url_prefix='/fetch_trips')
     app.register_blueprint(sign_in_user_route, url_prefix='/user/sign_in_user')
