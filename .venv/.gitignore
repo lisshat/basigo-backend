@@ -1,0 +1,24 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment variable files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore IDE/editor-specific files
+.idea/
+*.iml
+*.vscode/
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Add more custom ignore patterns as needed
+# Ignore config.py
+instance/config.py

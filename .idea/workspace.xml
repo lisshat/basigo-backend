@@ -5,13 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f945fff-6956-4445-b069-dbd3e60ae512" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/FetchTripsAPI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/_init_.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/_init_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/dynamic_seat_booking/booking_seats.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/dynamic_seat_booking/booking_seats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/dynamic_seat_booking/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/dynamic_seat_booking/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/dynamic_seat_booking/seat_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/dynamic_seat_booking/seat_layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/fetch_trips.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/fetch_trips.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/mpesa/mpesa_daraja.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/mpesa/mpesa_daraja.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/apis/mpesa/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/apis/mpesa/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/config/basigo-3988b-firebase-adminsdk-33epq-d132714687.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/basigo-3988b-firebase-adminsdk-33epq-d132714687.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/models/insert_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/insert_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/auth/auth_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/auth/auth_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/redis_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/redis_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/routes/booking_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/routes/booking_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/routes/ticket_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/routes/ticket_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/services/booking_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/services/booking_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/services/mpesa_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/services/mpesa_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/redis/services/ticket_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/redis/services/ticket_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/user_data/sign_in_user_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/user_data/sign_in_user_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/app/user_data/sign_up_user_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/user_data/sign_up_user_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +55,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -64,10 +77,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\.venv\app\redis" />
-      <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\.venv\app" />
       <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\app" />
       <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI" />
+      <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\.venv\app\redis" />
+      <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\.venv\app" />
       <recent name="C:\Users\imani\PycharmProjects\FetchTripsAPI\.venv\app\apis\dynamic_seat_booking" />
     </key>
   </component>
