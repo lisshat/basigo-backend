@@ -6,11 +6,17 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.instance.config.Config')  # Load configuration from config.py
 
-    # Initialize Firebase if needed
-    firebase_credentials_path = app.config.get('FIREBASE_CREDENTIALS_JSON')
-    if firebase_credentials_path:
-        cred = credentials.Certificate(firebase_credentials_path)
+    # Load Firebase credentials from environment variable
+    firebase_creds_b64 = os.getenv('FIREBASE_CREDENTIALS')
+    if firebase_creds_b64:
+        # Decode the base64 string
+        firebase_creds_json = base64.b64decode(firebase_creds_b64).decode('utf-8')
+        # Parse the JSON
+        cred_dict = json.loads(firebase_creds_json)
+        cred = credentials.Certificate(cred_dict)
         initialize_app(cred)
+    else:
+        raise ValueError("Firebase credentials not found in environment variables")
 
     # Register Blueprints for APIs
     from apis.fetch_trips import fetch_trips_route
